@@ -7,14 +7,19 @@ import (
 	"github.com/gorilla/mux"
 	"strconv"
 )
-
+//Index func handles default page
+//It shows repeated contents defined by level in config.yml file
 func Index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, DynamicPage(int64(0), int64(0)))
 }
 
+//DynamicPage function is used for generation dynamic content in website.
 func DynamicPage(level, count int64)string{
 	levelLimit :=Config.Level
-	body := `<html><head><title></title></head><body>`
+	strLevel:= strconv.FormatInt(level, 10)
+	body := `<html><head><title></title></head><body><h1>Level `
+	body+=strLevel+` of `
+	body+=strconv.FormatInt(levelLimit, 10)+`</h1>`
 	if level<levelLimit{
 		for i:=int64(0); i<levelLimit; i++{
 			body+=`<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
