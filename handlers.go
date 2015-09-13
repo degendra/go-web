@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"log"
 	"github.com/gorilla/mux"
 	"strconv"
+	"math"
 )
 //Index func handles default page
 //It shows repeated contents defined by level in config.yml file
@@ -51,9 +51,8 @@ func Page(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	w.WriteHeader(http.StatusOK)
+	w.WriteHeader(PageStatus[int(math.Mod(float64(int(intLevel*Config.Level+intLink)), 45.0))])
 	w.Write([]byte(DynamicPage(intLevel, intLink)))
-	log.Println("level: %s & link: %s", string(intLevel), string(intLink))
 }
 
 /*
