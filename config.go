@@ -24,7 +24,8 @@ var PageStatus []int
 
 //LoadConfig parses file to Configuration struct
 func LoadConfig() {
-	source, err := ioutil.ReadFile("/home/bajra/go-yml/src/github.com/degendra/go-yml-config/config.yml")
+//	source, err := ioutil.ReadFile("/home/bajra/go-yml/src/github.com/degendra/go-web/config.yml")
+	source, err := ioutil.ReadFile("/root/config.yml")
 	if err != nil {
 		panic(err)
 	}
@@ -107,7 +108,7 @@ func savePageStatus(){
 		}
 		log.Println("Link status ", v, http.StatusText(v))
 
-		if k>=int(Config.Level*Config.Level-2){
+		if k>=int(Config.Level*Config.Level-1){
 			break
 		}
 

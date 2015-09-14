@@ -24,4 +24,16 @@ var routes = Routes{
 		"/pages/{level}/{link}",
 		Page,
 	},
+	Route{
+		"Index",
+		"HEAD",
+		"/",
+		Index,
+	},
+	Route{
+		"Home",
+		"HEAD",
+		"/pages/{level}/{link}",
+		Page,
+	},
 }
