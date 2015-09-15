@@ -10,7 +10,7 @@ import (
 //Index func handles default page
 //It shows repeated contents defined by level in config.yml file
 func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, DynamicPage(int64(0), int64(0)))
+	fmt.Fprint(w, DynamicPage(int64(1), int64(1)))
 }
 
 //DynamicPage function is used for generation dynamic content in website.
@@ -51,8 +51,15 @@ func Page(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	w.WriteHeader(PageStatus[int(math.Mod(float64(int(intLevel*Config.Level+intLink)), 45.0))])
+	w.WriteHeader(PageStatus[HttpStatus(intLevel, intLink)])
+	fmt.Printf("Level: %d Link: %d", intLevel, intLink)
 	w.Write([]byte(DynamicPage(intLevel, intLink)))
+}
+
+func HttpStatus(intLevel, intLink int64) int {
+	res:=int(math.Mod(float64(int((intLevel-1)*Config.Level+(intLink-1))), 45.0))
+	fmt.Println(res)
+	return res
 }
 
 /*
