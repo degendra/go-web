@@ -33,7 +33,6 @@ func LoadConfig() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Value: %#v\n", Config.Level)
 }
 
 
